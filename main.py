@@ -37,9 +37,9 @@ def get_transactions():
 @app.route('/add_person', methods=["POST"])
 def add_person():
 	if request.method == 'POST':
-	solde = request.form.get('solde')
-	people.append(Person(solde, []))
-	return get_people()
+		solde = request.form.get('solde')
+		people.append(Person(solde, []))
+		return get_people()
 
 # fonction pour ajouter une transaction dans la liste
 @app.route('/add_transaction', methods=["POST"])
