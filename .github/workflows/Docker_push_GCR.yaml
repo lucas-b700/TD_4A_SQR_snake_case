@@ -29,7 +29,7 @@ jobs:
         with:
           # Emplacement du Dockerfile
           file: Dockerfile.dockerfile
-          tags: eu.gcr.io/esirem/4A_SQR/Blanchard_Falkowski/TD_4A_SQR_snake_case:${{ github.ref_name }}
+          tags: eu.gcr.io/esirem/4a_sqr/blanchard_falkowski/td_4a_sqr_snake_case:${{ github.ref_name }}
           # Emplacement des fichiers 
           context: main.py
           push: true
