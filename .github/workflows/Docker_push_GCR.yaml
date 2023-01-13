@@ -31,5 +31,5 @@ jobs:
           file: Dockerfile.dockerfile
           tags: eu.gcr.io/esirem/4a_sqr/blanchard_falkowski/td_4a_sqr_snake_case:${{ github.ref_name }}
           # Emplacement des fichiers 
-          context: main.py
+          context: '.'
           push: true
