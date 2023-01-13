@@ -47,11 +47,11 @@ def add_transaction():
     if request.method == 'POST':
         P1_index = int(request.form.get('P1'))
         P2_index = int(request.form.get('P2'))
-	          if 0 <= P1_index < len(people) and 0 <= P2_index < len(people):
-   	  	        P1 = people[P1_index]
-  	  	        P2 = people[P2_index]
-	          else:
-    		        return "Error : Aucune personne n'a été trouvée avec cet indice."
+	if 0 <= P1_index < len(people) and 0 <= P2_index < len(people):
+   		P1 = people[P1_index]
+  	  	P2 = people[P2_index]
+	else:
+  	        return "Error : Aucune personne n'a été trouvée avec cet indice."
         t = int(request.form.get('t'))
         s = int(request.form.get('s'))
         P1.solde -= s
