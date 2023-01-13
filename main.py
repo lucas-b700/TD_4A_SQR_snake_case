@@ -3,6 +3,8 @@ import json
 
 app = Flask(__name__)
 
+
+# Definition de la classe Transaction
 class Transaction:
     def __init__(self, P1, P2, t, s):
         self.P1 = P1
@@ -10,22 +12,28 @@ class Transaction:
         self.t = t
         self.s = s
 
+	
+# Definition de la classe Person
 class Person:
     def __init__(self, solde, transactions):
         self.solde = solde
         self.transactions = transactions
 
+# Creation de nos listes de Transaction et de personnes, vide à cet instant
 transactions = []
 people = []
 
+# fonction pour afficher une personne
 @app.route('/')
 def get_people():
     return json.dumps([p.__dict__ for p in people])
 
+# fonction pour afficher une transaction
 @app.route('/transactions')
 def get_transactions():
     return json.dumps([t.__dict__ for t in transactions])
 
+# fonction pour ajouter une personne dans la liste
 @app.route('/add_person', methods=["POST"])
 def add_person():
     if request.method == 'POST':
@@ -33,6 +41,7 @@ def add_person():
         people.append(Person(solde, []))
         return get_people()
 
+# fonction pour ajouter une transaction dans la liste
 @app.route('/add_transaction', methods=["POST"])
 def add_transaction():
     if request.method == 'POST':
