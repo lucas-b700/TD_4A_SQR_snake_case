@@ -1,5 +1,6 @@
 from flask import Flask, request
 import json
+import csv
 
 app = Flask(__name__)
 
@@ -15,14 +16,53 @@ class Transaction:
 	
 # Definition de la classe Person
 class Person:
-	def __init__(self, solde, transactions):
+	def __init__(self, name, solde:float):
+		self.name = name
 		self.solde = solde
-		self.transactions = transactions
+		#Transactions
+		def debit(self, somme:float)
+		self.solde -= somme
+		def credit(self, somme:float)
+		self.solde += somme
 
-# Creation de nos listes de Transaction et de personnes, vide à cet instant
-transactions = []
-people = []
+p1 = Person("Maxime",10000)
+p2 = Person("Lucas",10000)
+p3 = Person("Pierre",6000)
+p4 = Person("Paul",4000)
+p5 = Person("Jacques",2000)
+p6 = Person("Michelle",3000)
+p7 = Person("Josette",2500)
+p8 = Person("Bernadette",2000)
+p9 = Person("Theo",3500)
 
+# Creation de nos listes
+people = {0:p1, 1:p2, 2:p3, 3:p4, 4:p5, 5:p6, 6:p7, 7:p8, 8:p9}
+transactions = {}
+tab = []
+
+#Ouverture du fichier fichierClient.csv
+with open('fichierClient.csv', newline='', encoding="utf-8-sig") as csvfile:
+	dataRead = csv.reader(csvfile)
+	for row in dataRead:
+		for rows in row:
+			data = (str(rows).split(' | '))
+			tab.append(data)
+
+for i in range(1, 8):
+	time = tab[i][2]
+	sum = tab[i][3]
+	for person in people:
+		if person.nom == tab[i][0]:
+			_P1 = person
+			person.debit(sum)
+		elif person.nom == tab[i][1]:
+			_P2 = person
+			person.credit(sum)
+		transaction = Transaction(_P1, _P2, time, sum)
+		transactions[len(transactions)+1]=transaction
+
+
+		### Modifications en cours du code suite au changement de la classe Person
 # fonction pour afficher une personne
 @app.route('/')
 def get_people():
