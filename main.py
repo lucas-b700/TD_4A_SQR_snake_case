@@ -52,52 +52,61 @@ for i in range(1, 8):
 	time = tab[i][2]
 	sum = tab[i][3]
 	for person in people:
-		if person.nom == tab[i][0]:
+		if person.name == tab[i][0]:
 			_P1 = person
 			person.debit(sum)
-		elif person.nom == tab[i][1]:
+		elif person.name == tab[i][1]:
 			_P2 = person
 			person.credit(sum)
 		transaction = Transaction(_P1, _P2, time, sum)
-		transactions[len(transactions)+1]=transaction
+		transactions[len(transactions) + 1] = transaction
 
+# fonction pour afficher l'historique d'une personne
+@app.route('/name/<_person>', methods = ['GET'])
+def get_transactions_people(_person = None):
+	if request.method == 'GET':
+		returnTransaction=""
+		for i in range(len(transactions) - 1):
+			if(transactions[i].t > transactions[i + 1].t):
+				temp = transaction[i]
+				transaction[i] = transaction[i + 1]
+				transaction[i + 1] = temp
+		for i in range(len(transactions) + 1):
+			if(i>0 and ((transactions[i].P1.name == str(_person)) or (transactions[i].P2.name == str(_person)))):
+				returnTransaction += "Transaction de "+str(transactions[i].P1.name)+" vers le compte de "+str(transactions[i].P2.name)+" a "+str(transactions[i].t)+" pour une somme de "+str(transactions[i].s)+"€"+"<br><br>"
+		return returnTransaction
 
-		### Modifications en cours du code suite au changement de la classe Person
-# fonction pour afficher une personne
-@app.route('/')
-def get_people():
-	return json.dumps([p.__dict__ for p in people])
-
-# fonction pour afficher une transaction
-@app.route('/transactions')
+# fonction pour afficher des transactions
+@app.route('/', methods = ['GET'])
 def get_transactions():
-	return json.dumps([t.__dict__ for t in transactions])
-
-# fonction pour ajouter une personne dans la liste
-@app.route('/add_person', methods=["POST"])
-def add_person():
-	if request.method == 'POST':
-		solde = request.form.get('solde')
-		people.append(Person(solde, []))
-		return get_people()
-
-# fonction pour ajouter une transaction dans la liste
-@app.route('/add_transaction', methods=["POST"])
-def add_transaction():
-	if request.method == 'POST':
-		P1_index = int(request.form.get('P1'))
-		P2_index = int(request.form.get('P2'))
-		if 0 <= P1_index < len(people) and 0 <= P2_index < len(people):
-			P1 = people[P1_index]
-			P2 = people[P2_index]
-		else:
-			return "Error : Aucune personne n'a été trouvée avec cet indice."
-		t = int(request.form.get('t'))
-		s = int(request.form.get('s'))
-		P1.solde -= s
-		P2.solde += s
-		transaction = Transaction(P1, P2, t, s)
-		transactions.append(transaction)
-		P1.transactions.append(transaction)
-		P2.transactions.append(transaction)
-		return get_transactions()
+	if request.method == 'GET':
+		returnTransaction=""
+		for i in range(len(transactions) + 1):
+			if(i>0):
+				returnTransaction += "Transaction de "+str(transactions[i].P1.name)+" vers le compte de "+str(transactions[i].P2.name)+" a "+str(transactions[i].t)+" pour une somme de "+str(transactions[i].s)+"€"+"<br><br>"
+		return returnTransaction
+	
+# fonction pour afficher le solde d'une personne
+@app.route("/solde/<_person>", methods = ['GET']) 
+def getSolde(_person = None): 
+	if request.method == 'GET':
+		returnSolde=""
+		for i in range(len(people)):
+			if(people[i].name == str(_person)):
+				returnSolde += "Solde du compte de "+str(people[i].name)+" : "+str(people[i].solde)+"€"+"<br><br>"
+		return returnSolde
+	
+# fonction pour ajouter une transaction
+@app.route("/<_person1>/<_person2>/<_t>/<_s>", methods = ['PUT']) 
+def addTransaction(_person = None, _person2 = None, _t = None, _s = None): 
+	if request.method == 'PUT':
+		for person in people:
+			if(person.name == str(_person1)):
+				_person1 = person
+				person.debit(float(_s))
+			elif(person.name == str(_person2)):
+				_person2 = person
+				person.credit(float(_s))
+		transaction = Transaction(_person1, _person2, str(_t), float(_s))
+		transactions[len(transactions)+1] = transaction
+		return str(transactions)
