@@ -2,7 +2,7 @@
 By [Falkowski Maxime](https://github.com/FLKprod) et [Blanchard Lucas](https://github.com/lucas-b700)
 **Spécialité SQR**  
 
-[![Generic badge](https://img.shields.io/badge/<FALKOWSKI>-<BLANCHARD>-<COLOR>.svg)](https://shields.io/)
+![esirem](https://www.u-bourgogne.fr/wp-content/uploads/logo-couleur.jpg)
 
 ## Exercice "Automatiser votre dépôt"
 
@@ -11,3 +11,5 @@ By [Falkowski Maxime](https://github.com/FLKprod) et [Blanchard Lucas](https://g
 ![example workflow](https://github.com/lucas-b700/TD_4A_SQR_snake_case/actions/workflows/blank3.yml/badge.svg)
 
 ## Projet
+  
+Nous avons décidé de réaliser le sujet guidé n'ayant aucune base en CI/CD avant ce cours.
