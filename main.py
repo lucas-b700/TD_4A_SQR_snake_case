@@ -110,3 +110,6 @@ def addTransaction(_person = None, _person2 = None, _t = None, _s = None):
 		transaction = Transaction(_person1, _person2, str(_t), float(_s))
 		transactions[len(transactions)+1] = transaction
 		return str(transactions)
+
+if __name__ == '__main__':
+    app.run()
