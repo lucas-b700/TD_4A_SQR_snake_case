@@ -24,6 +24,10 @@ class Person:
 		self.solde -= somme
 	def credit(self, somme:float):
 		self.solde += somme
+	def get_name(self):
+        	return self._name
+	def get_solde(self):
+        	return self._solde
 
 p1 = Person("Maxime",10000)
 p2 = Person("Lucas",10000)
@@ -52,11 +56,11 @@ for i in range(0, 7):
 	time = tab[i][2]
 	sum = tab[i][3]
 	for j in range(len(people)):
-		if(people[j].name == str(tab[i][0])):
+		if(people[j].get_name() == str(tab[i][0])):
 			_P1 = people[j]
 			people[j].debit(float(sum))
 	for j in range(len(people)):
-		if(people[j].name == str(tab[i][1])):
+		if(people[j].get_name() == str(tab[i][1])):
 			_P2 = people[j]
 			people[j].credit(float(sum))
 	transaction = Transaction(_P1, _P2, time, sum)
@@ -73,8 +77,8 @@ def get_transactions_people(_person = None):
 				transaction[i] = transaction[i + 1]
 				transaction[i + 1] = temp
 		for i in range(len(transactions) + 1):
-			if(i>0 and ((transactions[i].P1.name == str(_person)) or (transactions[i].P2.name == str(_person)))):
-				returnTransaction += "Transaction de "+str(transactions[i].P1.name)+" vers le compte de "+str(transactions[i].P2.name)+" a "+str(transactions[i].t)+" pour une somme de "+str(transactions[i].s)+"€"+"<br><br>"
+			if(i>0 and ((transactions[i].P1.name == str(_person)) or (transactions[i].P2.get_name() == str(_person)))):
+				returnTransaction += "Transaction de "+str(transactions[i].P1.get_name())+" vers le compte de "+str(transactions[i].P2.get_name())+" a "+str(transactions[i].t)+" pour une somme de "+str(transactions[i].s)+"€"+"<br><br>"
 		return returnTransaction
 
 # fonction pour afficher des transactions
@@ -84,7 +88,7 @@ def get_transactions():
 		returnTransaction=""
 		for i in range(len(transactions) + 1):
 			if(i>0):
-				returnTransaction += "Transaction de "+str(transactions[i].P1.name)+" vers le compte de "+str(transactions[i].P2.name)+" a "+str(transactions[i].t)+" pour une somme de "+str(transactions[i].s)+"€"+"<br><br>"
+				returnTransaction += "Transaction de "+str(transactions[i].P1.get_name())+" vers le compte de "+str(transactions[i].P2.get_name())+" a "+str(transactions[i].t)+" pour une somme de "+str(transactions[i].s)+"€"+"<br><br>"
 		return returnTransaction
 	
 # fonction pour afficher le solde d'une personne
@@ -93,8 +97,8 @@ def getSolde(_person = None):
 	if request.method == 'GET':
 		returnSolde=""
 		for i in range(len(people)):
-			if(people[i].name == str(_person)):
-				returnSolde += "Solde du compte de "+str(people[i].name)+" : "+str(people[i].solde)+"€"+"<br><br>"
+			if(people[i].get_name() == str(_person)):
+				returnSolde += "Solde du compte de "+str(people[i].get_name())+" : "+str(people[i].get_solde())+"€"+"<br><br>"
 		return returnSolde
 	
 # fonction pour ajouter une transaction
