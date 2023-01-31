@@ -22,5 +22,6 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Script python
-        run: pip3 install flask
+        run: 
+          pip3 install flask
           python main.py
