@@ -1,4 +1,4 @@
-name: CREATE IMAGE FROM Dockerfile
+name: imageBuilder
 
 on:
   workflow_dispatch:
