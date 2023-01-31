@@ -48,13 +48,13 @@ with open('fichierClient.csv', newline='', encoding="utf-8-sig") as csvfile:
             data = (str(rows).split(' | '))
             tab.append(data)
 
-for i in range(0, 7):
+for i in range(1, 7):
     time = tab[i][2]
     sum = tab[i][3]
     for j in range(len(people)):
-        if(people[j].name == str(tab[i][0])):
+        if(people[j].name == str(sum)):
             _P1 = people[j]
-            people[j].debit(float(tab[i][3]))
+            people[j].debit(float(sum))
         if(people[j].name == str(tab[i][1])):
             _P2 = people[j]
 	    people[j].credit(float(tab[i][3]))
