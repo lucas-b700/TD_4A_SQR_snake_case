@@ -1,0 +1,120 @@
+openapi: 3.0.3
+info:
+  title: Projet CI/CD Falkowski / Blanchard
+  description: |-
+    Projet de Maxime Falkowski et Lucas Blanchard
+
+    Nous avons définis l'ensemble des EndPoints présents dans notre API Flask permettant la gestion CRUD d'un système de transaction.
+    Vous pourrez retrouver notre API Flask via ce lien ci dessous :
+    - [Lien de notre API Flask](https://github.com/lucas-b700/TD_4A_SQR_snake_case/blob/main/main.py)
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.11
+tags:
+  - name: GET
+    description: Endpoints utilisant des requêtes "GET"
+  - name: PUT
+    description: Endpoints utilisant des requêtes "PUT"
+
+paths:
+  /:
+    get:
+      tags:
+        - GET
+      summary: Affichage de toutes les transactions
+      description: EndPoint permettant d'afficher une liste de toutes les transactions dans l’ordre chronologique
+      operationId: showalltransactions
+      responses:
+        '200': {
+          "description": "Successful operation"
+        }
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Pet not found
+        '405':
+          description: Validation exception
+  /name/<_person>:
+    get:
+      tags:
+        - GET
+      summary: Affichage de toutes les transactions liées à une personne
+      description: EndPoint permettant d'afficher toutes les transactions éffectuées par une personne
+      operationId: showtransactionspersonne
+      parameters:
+        - name: <_p>
+          in: query
+          description: Le nom de la personne sur laquelle nous souhaitons effectuer une recherche et afficher les transacions éffecutées par cette dernière
+          example: Maxime
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: Invalid name supplied
+  /solde/<_person>:
+    get:
+      tags:
+        - GET
+      summary: Affichage du solde lié à une personne
+      description: EndPoint permettant d'afficher le solde restant d'une personne
+      operationId: showsoldepersonne
+      parameters:
+        - name: <_p>
+          in: query
+          description: Nom de la personne sur laquelle nous souhaitons effectuer la recherche
+          required: false
+          example: Maxime
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: Invalid name supplied
+  /<_person1>/<_person2>/<_t>/<_s>:
+    put:
+      tags:
+        - PUT
+      summary: Enregistrement d'une transaction entre 2 personnes d'un montant de _s euros effectuée à l'instant _t
+      description: "Enregistrement d'une transaction entre 2 personnes _P1 et _P2 d'un montant de _s € effectuée à une heure _t"
+      operationId: savetransaction
+      parameters:
+        - name: <_P1>
+          in: query
+          description: Le nom de la personne effectuant la transaction
+          example: Maxime
+          required: false
+          schema:
+            type: string
+        - name: <_P2>
+          in: query
+          description: Le Nom de la personne recevant la transaction
+          required: false
+          example: Lucas
+          schema:
+            type: string
+        - name: <_t>
+          in: query
+          description: L'heure à laquelle la transaction est effectuée
+          example: 12h00
+          required: false
+          schema:
+            type: string
+        - name: <_s>
+          in: query
+          description: Le montant de la transaction
+          example: 150
+          required: false
+          schema:
+            type: number
+            format: float
+            
+      responses:
+        '200':
+          description: successful operation
+        '400':
+          description: Invalid name supplied
