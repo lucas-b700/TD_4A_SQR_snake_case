@@ -42,39 +42,39 @@ tab = []
 
 #Ouverture du fichier fichierClient.csv
 with open('fichierClient.csv', newline='', encoding="utf-8-sig") as csvfile:
-    dataRead = csv.reader(csvfile)
-    for row in dataRead:
-        for rows in row:
-            data = (str(rows).split(';'))
-            tab.append(data)
+	dataRead = csv.reader(csvfile)
+	for row in dataRead:
+		for rows in row:
+			data = (str(rows).split(';'))
+			tab.append(data)
 
 for i in range(1, 6):
-    time = tab[i][2]
-    sum = tab[i][3]
-    for j in range(len(people)):
-        if(people[j].name == str(tab[i][1])):
-            _P1 = people[j]
-	    people[j].debit(float(sum))
-        if(people[j].name == str(tab[i][1])):
-            _P2 = people[j]
-	    people[j].credit(float(sum))
-    transaction = Transaction(_P1, _P2, time, sum)
-    transactions[len(transactions) + 1] = transaction
+	time = tab[i][2]
+	sum = tab[i][3]
+	for j in range(len(people)):
+		if(people[j].name == str(tab[i][1])):
+			_P1 = people[j]
+			people[j].debit(float(sum))
+		if(people[j].name == str(tab[i][1])):
+			_P2 = people[j]
+			people[j].credit(float(sum))
+	transaction = Transaction(_P1, _P2, time, sum)
+	transactions[len(transactions) + 1] = transaction
 	
 # fonction pour afficher l'historique d'une personne
 @app.route('/name/<_person>', methods = ['GET'])
 def get_transactions_people(_person = None):
-    if request.method == 'GET':
-        returnTransaction=""
-        for i in range(len(transactions) - 1):
-            if(transactions[i].t > transactions[i + 1].t):
-            temp = transaction[i]
-            transaction[i] = transaction[i + 1]
-            transaction[i + 1] = temp
-            for i in range(len(transactions) + 1):
-                if(i>0 and ((transactions[i].P1.name == str(_person)) or (transactions[i].P2.name == str(_person)))):
-                    returnTransaction += "Transaction de "+str(transactions[i].P1.name)+" vers le compte de "+str(transactions[i].P2.name)+" a "+str(transactions[i].t)+" pour une somme de "+str(transactions[i].s)+"€"+"<br><br>"
-            return returnTransaction
+	if request.method == 'GET':
+		returnTransaction=""
+		for i in range(len(transactions) - 1):
+			if(transactions[i].t > transactions[i + 1].t):
+				temp = transaction[i]
+				transaction[i] = transaction[i + 1]
+				transaction[i + 1] = temp
+		for i in range(len(transactions) + 1):
+			if(i>0 and ((transactions[i].P1.name == str(_person)) or (transactions[i].P2.name == str(_person)))):
+				returnTransaction += "Transaction de "+str(transactions[i].P1.name)+" vers le compte de "+str(transactions[i].P2.name)+" a "+str(transactions[i].t)+" pour une somme de "+str(transactions[i].s)+"€"+"<br><br>"
+		return returnTransaction
 
 # fonction pour afficher des transactions
 @app.route('/', methods = ['GET'])
@@ -112,4 +112,4 @@ def addTransaction(_person1 = None, _person2 = None, _t = None, _s = None):
 		return str(transactions)
 
 if __name__ == '__main__':
-    app.run()
+	app.run()
