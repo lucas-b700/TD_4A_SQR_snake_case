@@ -45,14 +45,14 @@ with open('fichierClient.csv', newline='', encoding="utf-8-sig") as csvfile:
 	dataRead = csv.reader(csvfile)
 	for row in dataRead:
 		for rows in row:
-			data = (str(rows).split(';'))
+			data = (str(rows).split(' | '))
 			tab.append(data)
 
-for i in range(1, 6):
+for i in range(0, 7):
 	time = tab[i][2]
 	sum = tab[i][3]
 	for j in range(len(people)):
-		if(people[j].name == str(tab[i][1])):
+		if(people[j].name == str(tab[i][0])):
 			_P1 = people[j]
 			people[j].debit(float(sum))
 		if(people[j].name == str(tab[i][1])):
