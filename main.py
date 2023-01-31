@@ -53,11 +53,13 @@ for i in range(1, 8):
 	sum = tab[i][3]
 	for j in range(len(people)):
 		if(people[j].name == str(tab[i][0])):
-			_P1=people[j]
+			_P1 = people[j]
 			people[j].debit(float(sum))
 		elif(people[j].name == str(tab[i][1])):
-			_P2=people[j]
+			_P2 = people[j]
 			people[j].credit(float(sum))
+		_P1 = str(tab[i][0])
+		_P2 = str(tab[i][1])
 		transaction = Transaction(_P1, _P2, time, sum)
 		transactions[len(transactions) + 1] = transaction
 
@@ -102,10 +104,10 @@ def addTransaction(_person1 = None, _person2 = None, _t = None, _s = None):
 	if request.method == 'PUT':
 		for i in range(len(people)):
 			if(people[i].name == str(_person1)):
-				_person1=people[i]
+				_person1 = people[i]
 				people[i].debit(float(_s))
 			elif(people[i].name == str(_person2)):
-				_person2=people[i]
+				_person2 = people[i]
 				people[i].credit(float(_s))
 		transaction = Transaction(_person1, _person2, str(_t), float(_s))
 		transactions[len(transactions)+1] = transaction
