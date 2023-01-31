@@ -25,9 +25,9 @@ class Person:
 	def credit(self, somme:float):
 		self.solde += somme
 	def get_name(self):
-        	return self._name
+        	return self.name
 	def get_solde(self):
-        	return self._solde
+        	return self.solde
 
 p1 = Person("Maxime",10000)
 p2 = Person("Lucas",10000)
