@@ -50,7 +50,7 @@ with open('fichierClient.csv', newline='', encoding="utf-8-sig") as csvfile:
 
 for i in range(0, 5):
 	time = tab[i][2]
-	sum = float(tab[i][3])
+	sum = tab[i][3]
 	for j in range(len(people)):
 		if(people[j].name == str(tab[i+1][0])):
 			_P1 = people[j]
@@ -58,7 +58,7 @@ for i in range(0, 5):
 		if(people[j].name == str(tab[i+1][1])):
 			_P2 = people[j]
 			people[j].credit(float(sum))
-	transaction = Transaction(_P1, _P2, time, sum)
+	transaction = Transaction(_P1, _P2, time, float(sum))
 	transactions[len(transactions) + 1] = transaction
 	
 # fonction pour afficher l'historique d'une personne
