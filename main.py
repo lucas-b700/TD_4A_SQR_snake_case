@@ -48,14 +48,14 @@ with open('fichierClient.csv', newline='', encoding="utf-8-sig") as csvfile:
 			data = (str(rows).split(' | '))
 			tab.append(data)
 
-for i in range(1, 8):
+for i in range(0, 7):
 	time = tab[i][2]
 	sum = tab[i][3]
 	for j in range(len(people)):
 		if(people[j].name == str(tab[i][0])):
 			_P1 = people[j]
 			people[j].debit(float(sum))
-		elif(people[j].name == str(tab[i][1])):
+		if(people[j].name == str(tab[i][1])):
 			_P2 = people[j]
 			people[j].credit(float(sum))
 	transaction = Transaction(_P1, _P2, time, sum)
@@ -104,7 +104,7 @@ def addTransaction(_person1 = None, _person2 = None, _t = None, _s = None):
 			if(people[i].name == str(_person1)):
 				_person1 = people[i]
 				people[i].debit(float(_s))
-			elif(people[i].name == str(_person2)):
+			if(people[i].name == str(_person2)):
 				_person2 = people[i]
 				people[i].credit(float(_s))
 		transaction = Transaction(_person1, _person2, str(_t), float(_s))
