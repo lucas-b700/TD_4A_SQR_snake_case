@@ -48,7 +48,9 @@ with open('fichierClient.csv', newline='', encoding="utf-8-sig") as csvfile:
             data = (str(rows).split(' | '))
             tab.append(data)
 
-for i in range(0, 7):	
+for i in range(0, 7):
+    time = tab[i][2]
+    sum = tab[i][3]
     for j in range(len(people)):
         if(people[j].name == str(tab[i][0])):
             _P1 = people[j]
@@ -56,8 +58,6 @@ for i in range(0, 7):
         if(people[j].name == str(tab[i][1])):
             _P2 = people[j]
 	    people[j].credit(float(sum))
-    time = tab[i][2]
-    sum = tab[i][3]
     transaction = Transaction(_P1, _P2, time, sum)
     transactions[len(transactions) + 1] = transaction
 	
