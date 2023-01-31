@@ -42,26 +42,24 @@ tab = []
 
 #Ouverture du fichier fichierClient.csv
 with open('fichierClient.csv', newline='', encoding="utf-8-sig") as csvfile:
-	dataRead = csv.reader(csvfile)
-	for row in dataRead:
-		for rows in row:
-			data = (str(rows).split(' | '))
-			tab.append(data)
+    dataRead = csv.reader(csvfile)
+        for row in dataRead:
+            for rows in row:
+                data = (str(rows).split(' | '))
+                tab.append(data)
 
-for i in range(0, 7):
-	
-	for j in range(len(people)):
-		if(people[j].name == str(tab[i][0])):
-			_P1 = people[j]
-			people[j].debit(float(sum))
-	for j in range(len(people)):
-		if(people[j].name == str(tab[i][1])):
-			_P2 = people[j]
-			people[j].credit(float(sum))
-	time = tab[i][2]
-	sum = tab[i][3]
-	transaction = Transaction(_P1, _P2, time, sum)
-	transactions[len(transactions) + 1] = transaction
+for i in range(0, 7):	
+    for j in range(len(people)):
+        if(people[j].name == str(tab[i][0])):
+            _P1 = people[j]
+            people[j].debit(float(sum))
+        if(people[j].name == str(tab[i][1])):
+            _P2 = people[j]
+	    people[j].credit(float(sum))
+    time = tab[i][2]
+    sum = tab[i][3]
+    transaction = Transaction(_P1, _P2, time, sum)
+    transactions[len(transactions) + 1] = transaction
 	
 # fonction pour afficher l'historique d'une personne
 @app.route('/name/<_person>', methods = ['GET'])
