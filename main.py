@@ -48,17 +48,17 @@ with open('fichierClient.csv', newline='', encoding="utf-8-sig") as csvfile:
 			data = (str(rows).split(' | '))
 			tab.append(data)
 
-for i in range(0, 5):
+for i in range(1, 6):
 	time = tab[i][2]
 	sum = tab[i][3]
 	for j in range(len(people)):
 		if(people[j].name == str(tab[i][0])):
-			P1 = people[j]
+			_P1 = people[j]
 			people[j].debit(float(sum))
 		if(people[j].name == str(tab[i][1])):
-			P2 = people[j]
+			_P2 = people[j]
 			people[j].credit(float(sum))
-	transaction = Transaction(P1, P2, time, sum)
+	transaction = Transaction(_P1, _P2, time, sum)
 	transactions[len(transactions) + 1] = transaction
 	
 # fonction pour afficher l'historique d'une personne
