@@ -1,7 +1,7 @@
-P1;P2;t;s
-Pierre;Paul;17h00;500
-Theo;Maxime;12h00;2000
-Josette;Jacques;13h30;750
-Lucas;Michelle;18h00;500
-Paul;Bernadette;8h00;1000
-Maxime;Lucas;21h00;2500
+P1 | P2 | t | s
+Pierre | Paul | 17h00 | 500
+Theo | Maxime | 12h00 | 2000
+Josette | Jacques | 13h30 | 750
+Lucas | Michelle | 18h00 | 500
+Paul | Bernadette | 8h00 | 1000
+Maxime | Lucas | 21h00 | 2500
