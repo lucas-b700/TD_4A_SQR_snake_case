@@ -54,11 +54,9 @@ for i in range(1,8):
 	sum = tab[i][3]
 	for j in range(len(people)):
 		if(people[j].name == str(tab[i][0])):
-			_P1 = people[j]
-			people[j].debit(float(sum))
+			_P1.debit(float(sum))
 		elif(people[j].name == str(tab[i][1])):
-			_P2 = people[j]
-			people[j].credit(float(sum))
+			_P2.credit(float(sum))
 	_P1 = str(tab[i][0])
 	_P2 = str(tab[i][1])
 	transaction = Transaction(_P1, _P2, time, sum)
