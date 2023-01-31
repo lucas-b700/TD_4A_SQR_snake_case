@@ -20,12 +20,11 @@ class Person:
 		self.name = name
 		self.solde = solde
 		#Transactions
-		def debit(self, somme:float):
-			self.solde -= somme
-		def credit(self, somme:float):
-			self.solde += somme
+	def debit(self, somme:float):
+		self.solde -= somme
+	def credit(self, somme:float):
+		self.solde += somme
 
-#creation de 8 Person
 p1 = Person("Maxime",10000)
 p2 = Person("Lucas",10000)
 p3 = Person("Pierre",6000)
@@ -49,18 +48,20 @@ with open('fichierClient.csv', newline='', encoding="utf-8-sig") as csvfile:
 			data = (str(rows).split(' | '))
 			tab.append(data)
 
-for i in range(1,8):
+for i in range(1, 8):
 	time = tab[i][2]
 	sum = tab[i][3]
 	for j in range(len(people)):
 		if(people[j].name == str(tab[i][0])):
-			_P1.debit(float(sum))
+			_P1 = people[j]
+			people[j].debit(float(sum))
 		elif(people[j].name == str(tab[i][1])):
-			_P2.credit(float(sum))
-	_P1 = str(tab[i][0])
-	_P2 = str(tab[i][1])
-	transaction = Transaction(_P1, _P2, time, sum)
-	transactions[len(transactions) + 1] = transaction
+			_P2 = people[j]
+			people[j].credit(float(sum))
+		_P1 = str(tab[i][0])
+		_P2 = str(tab[i][1])
+		transaction = Transaction(_P1, _P2, time, sum)
+		transactions[len(transactions) + 1] = transaction
 
 # fonction pour afficher l'historique d'une personne
 @app.route('/name/<_person>', methods = ['GET'])
@@ -75,7 +76,7 @@ def get_transactions_people(_person = None):
 		for i in range(len(transactions) + 1):
 			if(i>0 and ((transactions[i].P1.name == str(_person)) or (transactions[i].P2.name == str(_person)))):
 				returnTransaction += "Transaction de "+str(transactions[i].P1.name)+" vers le compte de "+str(transactions[i].P2.name)+" a "+str(transactions[i].t)+" pour une somme de "+str(transactions[i].s)+"€"+"<br><br>"
-	return returnTransaction
+		return returnTransaction
 
 # fonction pour afficher des transactions
 @app.route('/', methods = ['GET'])
@@ -85,7 +86,7 @@ def get_transactions():
 		for i in range(len(transactions) + 1):
 			if(i>0):
 				returnTransaction += "Transaction de "+str(transactions[i].P1.name)+" vers le compte de "+str(transactions[i].P2.name)+" a "+str(transactions[i].t)+" pour une somme de "+str(transactions[i].s)+"€"+"<br><br>"
-	return returnTransaction
+		return returnTransaction
 	
 # fonction pour afficher le solde d'une personne
 @app.route("/solde/<_person>", methods = ['GET']) 
@@ -95,7 +96,7 @@ def getSolde(_person = None):
 		for i in range(len(people)):
 			if(people[i].name == str(_person)):
 				returnSolde += "Solde du compte de "+str(people[i].name)+" : "+str(people[i].solde)+"€"+"<br><br>"
-	return returnSolde
+		return returnSolde
 	
 # fonction pour ajouter une transaction
 @app.route("/<_person1>/<_person2>/<_t>/<_s>", methods = ['PUT']) 
