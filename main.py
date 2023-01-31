@@ -58,8 +58,6 @@ for i in range(1, 8):
 		elif(people[j].name == str(tab[i][1])):
 			_P2 = people[j]
 			people[j].credit(float(sum))
-		_P1 = str(tab[i][0])
-		_P2 = str(tab[i][1])
 		transaction = Transaction(_P1, _P2, time, sum)
 		transactions[len(transactions) + 1] = transaction
 
