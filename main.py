@@ -5,7 +5,7 @@ import csv
 app = Flask(__name__)
 
 
-# Definition de la classe Transaction
+# Definition de la classe Transaction 
 class Transaction:
 	def __init__(self, P1, P2, t, s):
 		self.P1 = P1
