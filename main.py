@@ -52,12 +52,12 @@ for i in range(1, 8):
 	time = tab[i][2]
 	sum = tab[i][3]
 	for j in range(len(people)):
-            if(people[j].nom == str(tab[i][0])):
-                _P1=people[j]
-                people[j].debit(float(sum))
-            elif(people[j].nom == str(tab[i][1])):
-                _P2=people[j]
-                people[j].credit(float(sum))
+		if(people[j].nom == str(tab[i][0])):
+			_P1=people[j]
+			people[j].debit(float(sum))
+		elif(people[j].nom == str(tab[i][1])):
+			_P2=people[j]
+			people[j].credit(float(sum))
 		transaction = Transaction(_P1, _P2, time, sum)
 		transactions[len(transactions) + 1] = transaction
 
