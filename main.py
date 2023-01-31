@@ -45,7 +45,7 @@ with open('fichierClient.csv', newline='', encoding="utf-8-sig") as csvfile:
     dataRead = csv.reader(csvfile)
     for row in dataRead:
         for rows in row:
-            data = (str(rows).split(' | '))
+            data = (str(rows).split(';'))
             tab.append(data)
 
 for i in range(1, 7):
