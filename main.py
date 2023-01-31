@@ -54,7 +54,7 @@ for i in range(1, 7):
     for j in range(len(people)):
         if(people[j].name == str(tab[i][1])):
             _P1 = people[j]
-	    people[j].debit(float(tab[i][3]))
+	    people[j].debit(float(sum))
         if(people[j].name == str(tab[i][1])):
             _P2 = people[j]
 	    people[j].credit(float(sum))
