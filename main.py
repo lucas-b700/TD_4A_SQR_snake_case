@@ -58,9 +58,9 @@ for i in range(1, 8):
 		elif(people[j].name == str(tab[i][1])):
 			_P2 = people[j]
 			people[j].credit(float(sum))
-		transaction = Transaction(_P1, _P2, time, sum)
-		transactions[len(transactions) + 1] = transaction
-
+	transaction = Transaction(_P1, _P2, time, sum)
+	transactions[len(transactions) + 1] = transaction
+	
 # fonction pour afficher l'historique d'une personne
 @app.route('/name/<_person>', methods = ['GET'])
 def get_transactions_people(_person = None):
