@@ -52,10 +52,10 @@ for i in range(1, 8):
 	time = tab[i][2]
 	sum = tab[i][3]
 	for j in range(len(people)):
-		if(people[j].nom == str(tab[i][0])):
+		if(people[j].name == str(tab[i][0])):
 			_P1=people[j]
 			people[j].debit(float(sum))
-		elif(people[j].nom == str(tab[i][1])):
+		elif(people[j].name == str(tab[i][1])):
 			_P2=people[j]
 			people[j].credit(float(sum))
 		transaction = Transaction(_P1, _P2, time, sum)
@@ -101,10 +101,10 @@ def getSolde(_person = None):
 def addTransaction(_person1 = None, _person2 = None, _t = None, _s = None): 
 	if request.method == 'PUT':
 		for i in range(len(people)):
-			if(people[i].nom == str(_person1)):
+			if(people[i].name == str(_person1)):
 				_person1=people[i]
 				people[i].debit(float(_s))
-			elif(people[i].nom == str(_person2)):
+			elif(people[i].name == str(_person2)):
 				_person2=people[i]
 				people[i].credit(float(_s))
 		transaction = Transaction(_person1, _person2, str(_t), float(_s))
