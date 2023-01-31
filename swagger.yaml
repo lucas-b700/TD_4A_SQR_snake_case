@@ -55,7 +55,7 @@ paths:
           description: successful operation
         '400':
           description: Invalid name supplied
-  /solde/<_p>:
+  /solde/<_person>:
     get:
       tags:
         - GET
@@ -75,11 +75,11 @@ paths:
           description: successful operation
         '400':
           description: Invalid name supplied
-  /<_P1>/<_P2>/<_t>/<_s>:
+  /<_person1>/<_person2>/<_t>/<_s>:
     put:
       tags:
         - PUT
-      summary: Enregistrement d'une transaction entre 2 personnes _P1 et _P2 d'un montant de _s euros effectuée à l'instant _t
+      summary: Enregistrement d'une transaction entre 2 personnes d'un montant de _s euros effectuée à l'instant _t
       description: "Enregistrement d'une transaction entre 2 personnes _P1 et _P2 d'un montant de _s € effectuée à une heure _t"
       operationId: savetransaction
       parameters:
