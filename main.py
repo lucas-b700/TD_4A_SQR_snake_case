@@ -21,9 +21,9 @@ class Person:
 		self.solde = solde
 		#Transactions
 		def debit(self, somme:float):
-		self.solde -= somme
+			self.solde -= somme
 		def credit(self, somme:float):
-		self.solde += somme
+			self.solde += somme
 
 p1 = Person("Maxime",10000)
 p2 = Person("Lucas",10000)
