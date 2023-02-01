@@ -48,10 +48,10 @@ with open('fichierClient.csv', newline='', encoding="utf-8-sig") as csvfile:
 			data = (str(rows).split(' | '))
 			tab.append(data)
 
-for i in range(1, 1):
+for i in range(0, 5):
 	time = tab[i][2]
 	sum = float(tab[i][3])
-	for j in range(len(people)):
+	for j in range(0, 8):
 		if(people[j].name == str(tab[i][0])):
 			_P1 = people[j]
 			people[j].debit(sum)
@@ -61,7 +61,7 @@ for i in range(1, 1):
 	if(_P1):
 		if(_P2):
 			transaction = Transaction(_P1, _P2, time, sum)
-			transactions[len(transactions) + 1] = transaction
+			transactions.append(transaction)
 	
 # fonction pour afficher l'historique d'une personne
 @app.route('/name/<_person>', methods = ['GET'])
