@@ -1,13 +1,14 @@
 from flask import Flask, request
 import json
 import csv
+import sys
 
 app = Flask(__name__)
 
 
-# Definition de la classe Transaction 
+# Definition de la classe Transaction
 class Transaction:
-	def __init__(self, P1, P2, t, s:float):
+	def __init__(self, P1, P2, t, s):
 		self.P1 = P1
 		self.P2 = P2
 		self.t = t
@@ -24,6 +25,7 @@ class Person:
 		self.solde -= somme
 	def credit(self, somme:float):
 		self.solde += somme
+	
 
 p1 = Person("Maxime",10000)
 p2 = Person("Lucas",10000)
@@ -48,20 +50,19 @@ with open('fichierClient.csv', newline='', encoding="utf-8-sig") as csvfile:
 			data = (str(rows).split(' | '))
 			tab.append(data)
 
-for i in range(0, 5):
+for i in range(0, 6):
 	time = tab[i][2]
-	sum = float(tab[i][3])
+	sum = tab[i][3]
 	for j in range(len(people)):
 		if(people[j].name == str(tab[i][0])):
 			_P1 = people[j]
-			people[j].debit(sum)
-		if(people[j].name == str(tab[i][1])):
+			people[j].debit(float(sum))
+	for j in range(len(people)):
+		if(people[j].name== str(tab[i][1])):
 			_P2 = people[j]
-			people[j].credit(sum)
-	if(_P1):
-		if(_P2):
-			transaction = Transaction(_P1, _P2, time, sum)
-			transactions[len(transactions) + 1] = transaction
+			people[j].credit(float(sum))
+	transaction = Transaction(_P1, _P2, time, sum)
+	transactions[len(transactions) + 1] = transaction
 	
 # fonction pour afficher l'historique d'une personne
 @app.route('/name/<_person>', methods = ['GET'])
@@ -85,16 +86,16 @@ def get_transactions():
 		returnTransaction=""
 		for i in range(len(transactions) + 1):
 			if(i>0):
-				returnTransaction += "Transaction de "+str(transactions[i].P1.get_name())+" vers le compte de "+str(transactions[i].P2.name)+" a "+str(transactions[i].t)+" pour une somme de "+str(transactions[i].s)+"€"+"<br><br>"
+				returnTransaction += "Transaction de "+str(transactions[i].P1.name)+" vers le compte de "+str(transactions[i].P2.name)+" a "+str(transactions[i].t)+" pour une somme de "+str(transactions[i].s)+"€"+"<br><br>"
 		return returnTransaction
 	
-# fonction pour afficher le solde d'une personne 
+# fonction pour afficher le solde d'une personne
 @app.route("/solde/<_person>", methods = ['GET']) 
 def getSolde(_person = None): 
 	if request.method == 'GET':
 		returnSolde=""
 		for i in range(len(people)):
-			if(people[i].name == str(_person)):
+			if(people[i].get_name() == str(_person)):
 				returnSolde += "Solde du compte de "+str(people[i].name)+" : "+str(people[i].solde)+"€"+"<br><br>"
 		return returnSolde
 	
