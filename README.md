@@ -45,7 +45,7 @@ Les trois github actions demandées ont été réalisée :
 ![example workflow](https://github.com/lucas-b700/TD_4A_SQR_snake_case/actions/workflows/Docker_push_GCR.yaml/badge.svg)
 ![example workflow](https://github.com/lucas-b700/TD_4A_SQR_snake_case/actions/workflows/Docker_push_GCR_semver.yml/badge.svg)
   
-Cependant Script Python affiche failing au lieu de passing, le problème étant apparemment flask, normalement le reste du code est exact.
+Cependant Script Python affiche failing au lieu de passing, le problème étant que le workflow, lorsque l'on fait un commit, tourne sans jamais s'arrêter. Cependant lorsque l'on fais un test en local cela fonctionne.
 
 ### 2.1.4 Anticiper le déploiement continue (CD)
 
