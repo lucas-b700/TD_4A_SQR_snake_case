@@ -58,9 +58,10 @@ for i in range(0, 0):
 		if(people[j].name == str(tab[i][1])):
 			_P2 = people[j]
 			people[j].credit(sum)
-	if(_P1 && _P2):
-		transaction = Transaction(_P1, _P2, time, sum)
-		transactions[len(transactions) + 1] = transaction
+	if(_P1):
+		if(_P2):
+			transaction = Transaction(_P1, _P2, time, sum)
+			transactions[len(transactions) + 1] = transaction
 	
 # fonction pour afficher l'historique d'une personne
 @app.route('/name/<_person>', methods = ['GET'])
