@@ -49,7 +49,7 @@ with open('fichierClient.csv', newline='', encoding="utf-8-sig") as csvfile:
 			tab.append(data)
 
 for i in range(0, 5):
-	i++
+	i += 1
 	time = tab[i][2]
 	sum = float(tab[i][3])
 	for j in range(len(people)):
