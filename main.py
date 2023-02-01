@@ -88,7 +88,7 @@ def get_transactions():
 				returnTransaction += "Transaction de "+str(transactions[i].P1.get_name())+" vers le compte de "+str(transactions[i].P2.name)+" a "+str(transactions[i].t)+" pour une somme de "+str(transactions[i].s)+"€"+"<br><br>"
 		return returnTransaction
 	
-# fonction pour afficher le solde d'une personne
+# fonction pour afficher le solde d'une personne 
 @app.route("/solde/<_person>", methods = ['GET']) 
 def getSolde(_person = None): 
 	if request.method == 'GET':
