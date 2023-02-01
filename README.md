@@ -13,7 +13,7 @@ By [Falkowski Maxime](https://github.com/FLKprod) et [Blanchard Lucas](https://g
 
 Nous avons décidé de réaliser le sujet guidé n'ayant aucune base en CI/CD avant ce cours.
 
-# 2.1.1  Réaliser une première version de l’API REST  
+### 2.1.1  Réaliser une première version de l’API REST  
 
 En utilisant Flask, nous avons réaliser une première version de l’API.  
   
@@ -28,13 +28,13 @@ Par rapport au point E5 nous avons mis en place le fichier csv en suivant la syn
 P1 | P2 | t | s  
 Avec P1 et P2 des personnes, t l'heure de la transaction et s la somme de la transaction.  
   
-# 2.1.2  Documenter l’API via des READMEs et un fichier Swagger
+### 2.1.2  Documenter l’API via des READMEs et un fichier Swagger
 
 Comme dis précédemment nous avons décidé de réaliser le sujet guidé n'ayant aucune base en CI/CD avant ce cours.  
   
 Le fichier swagger est disponible sur le dépot.
 
-# 2.1.3 Préparer l’intégration continue (CI)
+### 2.1.3 Préparer l’intégration continue (CI)
 
 Les trois github actions demandées ont été réalisée :
 * Une déclenchée à chaque changement pour builder l’application. (Script Python)
@@ -47,6 +47,15 @@ Les trois github actions demandées ont été réalisée :
   
 Cependant Script Python affiche failing au lieu de passing, le problème étant apparemment flask, normalement le reste du code est exact.
 
-# 2.1.4 Anticiper le déploiement continue (CD)
+### 2.1.4 Anticiper le déploiement continue (CD)
 
 Cette étape a été réalisé au cours de la dernière séance de TP et le badge est disponible à l'étape 2.1.3 sous le nom "Docker push GCR"
+
+### Procédure d'exécution de l'API
+
+Entrez dans le fichier fichierClient.csv les noms des personnes participant à une transaction que vous souhaitez mettre en place, l'heure de la transaction ainsi que le montant de celle ci, le tout en respectant la syntaxe vu à l'étape 2.1.1 (P1 | P2 | t | s)  
+  
+Vous pouvez alors vous rendre dans le fichier main.py et modifier ligne 53 le numero de fin de la boucle for en fonction du nombre de transactions que vous avez ajoutés au fichier fichierClient.csv  
+  
+Si vous souhaitez mettre en place une transaction avec une personne qui n'existe pas actuellement en plus de t'étape précédente vous devez créer cette personne ligne 39 en respectant la syntaxe "p[numero] = Person("[nom]",[solde du compte])" en modifiant ce qui se trouve entre crochet.  
+Enfin veuillez ajouter ligne 41 la personne à la liste "people" en suivant la syntaxe "[numero suivant dans la liste]:p[numero de la personne renseigné ligne 39]" toujours en modifiant ce qui se trouve entre crochet.
