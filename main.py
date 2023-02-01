@@ -49,13 +49,13 @@ with open('fichierClient.csv', newline='', encoding="utf-8-sig") as csvfile:
 			tab.append(data)
 
 for i in range(0, 5):
-	time = tab[i+1][2]
-	sum = float(tab[i+1][3])
+	time = tab[4*(i+1)+2]
+	sum = float(tab[4*(i+1)+3])
 	for j in range(len(people)):
-		if(people[j].name == str(tab[i+1][0])):
+		if(people[j].name == str(tab[4*(i+1)+0])):
 			_P1 = people[j]
 			people[j].debit(sum)
-		if(people[j].name == str(tab[i+1][1])):
+		if(people[j].name == str(tab[4*(i+1)+1])):
 			_P2 = people[j]
 			people[j].credit(sum)
 	transaction = Transaction(_P1, _P2, time, sum)
