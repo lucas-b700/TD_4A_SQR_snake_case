@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 # Definition de la classe Transaction 
 class Transaction:
-	def __init__(self, P1, P2, t, s):
+	def __init__(self, P1, P2, t, s:float):
 		self.P1 = P1
 		self.P2 = P2
 		self.t = t
