@@ -47,7 +47,7 @@ with open('fichierClient.csv', newline='', encoding="utf-8-sig") as csvfile:
 		for rows in row:
 			data = (str(rows).split(' | '))
 			tab.append(data)
-test = {0, 1, 2, 3, 4, 5)
+test = {0, 1, 2, 3, 4, 5}
 for i in range(len(test)):
 	time = tab[i][2]
 	sum = float(tab[i][3])
