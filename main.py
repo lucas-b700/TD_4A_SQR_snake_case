@@ -37,7 +37,7 @@ p9 = Person("Theo",3500)
 
 # Creation de nos listes
 people = {0:p1, 1:p2, 2:p3, 3:p4, 4:p5, 5:p6, 6:p7, 7:p8, 8:p9}
-transactions = {}
+transactions = []
 tab = []
 
 #Ouverture du fichier fichierClient.csv
@@ -61,9 +61,7 @@ for i in range(0, 5):
 	if(_P1):
 		if(_P2):
 			transaction = Transaction(_P1, _P2, time, sum)
-			transactions[len(transactions) + 1] = transaction
-	if(i == 5):
-		break
+			transactions.append(transaction)
 	
 # fonction pour afficher l'historique d'une personne
 @app.route('/name/<_person>', methods = ['GET'])
