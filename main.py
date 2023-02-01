@@ -48,9 +48,9 @@ with open('fichierClient.csv', newline='', encoding="utf-8-sig") as csvfile:
 			data = (str(rows).split(' | '))
 			tab.append(data)
 
-for i in range(0, 5):
-	time = tab[i][2]
-	sum = float(tab[i][3])
+#for i in range(0, 5):
+	#time = tab[i][2]
+	#sum = float(tab[i][3])
 	#for j in range(len(people)):
 	#	if(people[j].name == str(tab[i][0])):
 	#		_P1 = people[j]
