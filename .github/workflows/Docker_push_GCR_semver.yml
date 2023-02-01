@@ -2,6 +2,7 @@ name: Docker push GCR semver
 
 on:
   push:
+    branches: [ "main" ]
     tags:
       - v*.*.*
 
