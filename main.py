@@ -48,20 +48,16 @@ with open('fichierClient.csv', newline='', encoding="utf-8-sig") as csvfile:
 			data = (str(rows).split(' | '))
 			tab.append(data)
 
-for i in range(0, 5):
+for i in range(1, 6):
 	time = tab[i][2]
 	sum = float(tab[i][3])
 	for j in range(len(people)):
 		if(people[j].name == str(tab[i][0])):
 			_P1 = people[j]
 			people[j].debit(sum)
-		else:
-			_P1 = ''
 		if(people[j].name == str(tab[i][1])):
 			_P2 = people[j]
 			people[j].credit(sum)
-		else:
-			_P2 = ''
 	if(_P1):
 		if(_P2):
 			transaction = Transaction(_P1, _P2, time, sum)
